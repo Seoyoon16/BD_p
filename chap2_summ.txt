@@ -1,0 +1,78 @@
+<빅데이터 2장>
+-google colab
+코드 셀: 한번에 실행할 단위, 실행 이후에도 메모리는 유지되어 다른 셀 실행 시 영향을 줌
+텍스트 셀: 주석, 마크다운 문법, 자동 목차 생성
+!터미널 명령어. 예외) %cd
+
+-깔끔한 데이터: 데이터 설계 시 분석 목적 알기 불가능, 데이터 분석 작업에서 데이터 변환 및 전처리 작업이 7할8할 차지
+
+-데이터를 다루는 주요 7가지 동작
+열 방향: 선택 select(), 계산 mutate()
+행 방향: 조건 filter(), 추가 bind_rows(), 정렬: arrange()
+그룹계산: group_by() + summarise()
+열 결합: left_join()
+
+-리스트
+a = [2, 3, 4] : A list of integers
+b = [2, 7, 3.5, "Hello"] : A mixed list
+c = [] : An empty list
+d = [2, [a + b]] : A list containing a list
+e = a + b : Join two lists
+
+x = a[1] : get second element
+y = b[1:3] : return a sublist
+z = d[1][0][2] : nested list
+b[0] = 42 : change an element
+
+-square root of a number x is y such that y*y=x
+g -> g*g -> x / g -> (g + x/g) / 2 -> g
+
+-몬테카를로 시뮬레이션_파이 계산
+
+-Numpy
+ndarray 제공
+import numpy as np
+my_arr = np.arange(1000000)
+my_list = list(range(1000000))
+%time for _ in range(10): my_arr2 = my_arr * 2
+%time for _ in range(10): my_list2 = [x*2 for x in my_list]
+
+-Pandas
+series: 레이블을 갖는 1차원 어레이
+dataframe: 레이블을 갖는 행과 열을 갖는 2차원 어레이 / Index, Key, Value
+
+df.describe
+df.mean(0) : 열 별 평균
+df.mean(1) : 행 별 평균
+df.head(), df.tail()
+df['A'] == df.A
+
+df.drop() : drop
+
+-Scikit-learn: 지도학습과 비지도학습을 위한 파이썬 머신러닝 라이브러리
+The Holdout Method
+1) 데이터셋을 랜덤으로 나눔 (3-테스팅:7-트레이닝)
+2) 트레이닝 셋으로 학습시킴 - fit()
+3) 예측 진행 - predict()
+4) 예측값과 비교 (정확도 비교) - accuracy_score(정답, 예측)
+
+Missing Values - 걍 지움 or 평균값 등 다른 값으로 대체
+Categorical Values - LableEncoder()
+1) le = LableEncoder()
+2) df['classlabel'] = le.fit_transform(df['classlabel'])
+순서정보: 딕셔너리를 통해 매핑테이블을 써서 변환
+size_mapping = {'M':0, 'L':1, 'XL':2}
+df['size'] = df['size'].map(size_mapping)
+df
+3) 색깔: 있다/없다로 표현
+pandas: get_dummies(), sklearn: OneHotEncoder()
+pd.get_dummies(df, columns=['color'])
+Numerical Values ex) 가격
+normalization, standardization
+
+자연어 토크나이징 도구: NLTK, spacy, KoNLPy, Re 함수, Beautiful soup, CountVectorizer, TfidfVectorize
+
+*
+정수+,-,*정수 = 정수
+정수/정수 = 실수
+정수-실수 = 실수
